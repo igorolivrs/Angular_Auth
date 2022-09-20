@@ -7,29 +7,61 @@
             <h3 class="pt-3 font-weight-bold">Login</h3>
           </div>
           <div class="panel-body p-3">
-            <form action="">
+            <form [formGroup]="loginForm">
               <div class="form-group pt-3">
-                <div class="input-field">
+                <div 
+                  [class.error]="loginForm.controls['username'].dirty &&
+                  loginForm.hasError('required', 'username')"
+                  class="input-field">
                   <span class="fa fa-user p-2"></span>
-                  <input type="text" placeholder="User Name" />
+                  <input
+                    formControlName="username"
+                    type="text"
+                    placeholder="UserName"
+                  />
                 </div>
               </div>
+              <small
+                *ngIf="
+                  loginForm.controls['username'].dirty &&
+                  loginForm.hasError('required', 'username')
+                "
+                class="text-danger"
+                >*Username is required</small
+              >
 
               <div class="form-group pt-3">
-                <div class="input-field">
+                <div 
+                  [class.error]="loginForm.controls['password'].dirty &&
+                  loginForm.hasError('required', 'password')"
+                  class="input-field" >
                   <span class="fa fa-lock p-2"></span>
-                  <input [type]="type" placeholder="Password" />
+                  <input
+                    formControlName="password"
+                    [type]="type"
+                    placeholder="Password"
+                  />
                   <span
                     (click)="hideShowPass()"
                     class="fa {{ eyeIcon }}"
                   ></span>
                 </div>
               </div>
+              <small
+                *ngIf="
+                  loginForm.controls['password'].dirty &&
+                  loginForm.hasError('required', 'password')
+                "
+                class="text-danger"
+                >*Password is required</small
+              >
+
               <div class="form-inline fr mt-4">
                 <a id="forget" class="font-weight-bold">Forget Password?</a>
               </div>
 
               <button
+                (click)="onSubmit()"
                 type="submit"
                 class="btn btn-primary btn-block mt-4 w-100"
               >
@@ -43,13 +75,21 @@
           </div>
           <div class="mx-3 my-2 py-2 bordert">
             <div class="text-center py-3">
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                class="px-2"
-              ><img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt="facebook icon"></a>
-              <a href="https://www.google.com" target="_blank" class="px-2"><img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="google icon"></a>
-              <a href="https://www.github.com" target="_blank" class="px-2"><img src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png" alt="github icon"></a>
+              <a href="https://www.facebook.com" target="_blank" class="px-2"
+                ><img
+                  src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg"
+                  alt="facebook icon"
+              /></a>
+              <a href="https://www.google.com" target="_blank" class="px-2"
+                ><img
+                  src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                  alt="google icon"
+              /></a>
+              <a href="https://www.github.com" target="_blank" class="px-2"
+                ><img
+                  src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"
+                  alt="github icon"
+              /></a>
             </div>
           </div>
         </div>
